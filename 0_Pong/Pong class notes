@@ -1,0 +1,55 @@
+Pong class notes
+Delta Time: one of the most important elements of a video time amount of time thats elapsed since the last frame of execution in our game
+Velocity:
+Hit boxes / box collision 
+Lua is based on tables i.e. dictionaries in python 
+Love is mostly for 2d                                        *great for prototyping
+2d Coordinate System is the most fundamental way of looking at the game system in a 2d game
+	Positive values are moving moving down and right
+	negative values are moving up and left
+
+love.load - used to initialize game state at the very beginning
+love.update(dt) - very important takes in a funciton dt that is overwritten with your own behavior that changes the game based upon how much time has passed
+love.draw - function that controls all drawing and rendering behavior
+love.graphics.printf - draws on the screen takes text on teh screen and will draw the text at xy and will take in consideration the width of the screen. Can align text to the left, right, and center (think like word alignment)
+Love.windo.setMode - takes parameters and sets up window that renders ont eh screen
+Pong -1 - functions
+	love.graphics.setDefaultFilter(min, mag) - everything that is in our application has a filter applied to it. Everytime we change the window size lua assumes we want the pixels to be smoothed to make them look less pixellated
+
+	love.keypressed(key) - callback fuction expected in main that gets passed in a key that does an action based on what the key pressed is. Takes a string that defines the key so escape key is "escape"
+
+	Texture filtering - 
+		point filtering - nearest neighbor
+		Anistroptic filtering causes blurriness in 2d
+
+	var = require 'Library Name' - this is how we call in outside libraries or code or helper files 
+
+	Virtual_width/height = sets a resolution for in game that is rendered in the arbitrary window size. low res feel for larger sized windows
+
+	push:SetupScreen(virtual hw, Window hW) - library call that renders the game magnified at the actual windows size
+
+Pong -2 - functions
+	love.graphics.newfont - takes a new font ttl file and sizes that it loads into the program
+
+	love.graphics.setfont - takes whatever font was set using new font and applies it to the active window
+
+	Love.graphics.clear - accepts rgb colors and clears the screen in a color the last number tells it how opaque you want 255 full color
+
+	love.graphics.rectangle - takes a mode (fill or line) x or y and a width and height drawing a rectangle at xy with width adn height
+
+Pong -3 - functions
+	love.keyboard.isDown(string) - returns true or false is string specified is pressed
+
+Pon -4 - functions
+	math.randomseed(num) - LUA only function, takes a starting number and spits out a random number (So how can we seed this with a random number so it doesn't spit out the same random number pattern)
+
+	os.time() - Lua returns the time and changes every single second
+
+	math.random(min,max) - returns a value inclusively [assumes min of 1 if not given]
+
+	math.min(num1, num2) returns smaller of 2 values
+
+	math.max(num1, num2) returns larger of two values
+
+Pong -5- functions
+	left off at 45 minutes
