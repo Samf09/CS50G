@@ -40,7 +40,7 @@ Pong -2 - functions
 Pong -3 - functions
 	love.keyboard.isDown(string) - returns true or false is string specified is pressed
 
-Pon -4 - functions
+Pong -4 - functions
 	math.randomseed(num) - LUA only function, takes a starting number and spits out a random number (So how can we seed this with a random number so it doesn't spit out the same random number pattern)
 
 	os.time() - Lua returns the time and changes every single second
@@ -53,3 +53,54 @@ Pon -4 - functions
 
 Pong -5- functions
 	left off at 45 minutes
+	the class update!
+	in order to scale code more effectively we need to move towards a class idea of what our code should look like
+	-Classes are ways of taking variables that get to big / unwieldy for the main file but still be used
+	-so splitting pong into paddles, balls, main 
+	-Think car example - Don't need to have all these functions within the main car software for turn, slow, honk. Keeps it more organized to split into main that inherits a turn class and a slow class and a honk class
+	-classes allow us to scale program easily. We can use calls to classes to save us having to write the same multiple lines of code in our main file to just calling it from the class
+
+Pong -6- functions
+	-love.window.setTitle(title) - allows us to set the title for the window
+	-love.time.getFPS() - returns a int of the frames per second of the current screen
+	-in lua remember that it by default doesn't handle combineing different types such as int and string so you have to call toString to concat ints and strings
+
+	*AABB Collision Detection* - axis-aligned bounding boxes. Simple idea that we know our parts in the game do not rotate (Paddles, and ball) so we can look at where their corners are in relation to each other and this will tell us if they have collided or not
+		if we have two rectangles we can look at their opposite edges so if the left side of rectangle 1 is on the other side of rectangle 2's right edge we know they cannot collide. 
+		If the top side of rectangle 1 is below the bottom side of rect 2 we know that they cannot collide or in the other
+
+Pong -7- collision with walls update
+	Collision with top and bottom of the window needs to be accounted for. We can check if the the top edge of the ball is = to 0 for the top of the window, check if the bottom edge of the screen minus the ball width is equal to the balls current y position
+
+Pong -8- Score keeping
+	We need to implement someway to keep track of whether the ball leaves to the right or left side of the screen
+
+Pong -9- State machine
+	-states have their own logic and this refers to how we can monitor what state we are in and what changes between them
+	-Mario example where there is a ducking state, jumping state, diving state, standing state
+	-can definte any number of arbitrary states that game needs
+	-transitions are used to move in and out of states
+	-in Pong there are the start state, the play state, the serve state like a player 1 serve if they lose or player 2 serve if they lose
+	-transition from start screen to serve state is enter key press then transition from serve to play state is enter key then transition from play back to serve state is when the ball goes out
+
+Pong -10- Winning!
+	-how do we tell if someplayer has won? if player has score of 10 duh
+	-we can create a new state called done
+	-new variable winningPlayer which shows player that won (1 or 2)
+	-Concats in lua love.grapics.printf('Press Enter to restart!' .. tostring(winnginPlayer) .. ' wins!', 0, 10, VIRTUAL_WIDTH, 'center')
+	
+Pong -11- Audio!!
+	-love.audio.newSource(path, [type]) takes path to an audio object and the type of that object
+	-bfxr is free for windows and mac might have a linux port that lets you create a bunch of random sounds. bfxr.org
+	-tables in lua are the be all end all. They look like table = {['some_var'] = some_value}
+	-for sounds in lua you can chose to load them as static or stream. Static preserves sound in the memory Stream pulls it as needed saving space if you have a lot of sounds
+	-sounds can be called/loaded in two different ways sounds.paddle_hit (java like) or sounds['paddle_hit'] (pythonic like)
+	-to cause sound to play sounds['paddle_hit']:play()
+	
+Pong -12- Resize!
+	-to resize a window in lua we use love.resize(width, height)
+	-in the setupscreen set resizeable = true 
+	-add a function love.resize(w,h) with a push:resize(w,h)
+	-lua will automatically resize the window to best fit the resolution you set in virtual resolution i.e. letter boxing
+	
+
